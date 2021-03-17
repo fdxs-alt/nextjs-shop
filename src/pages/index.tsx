@@ -1,8 +1,10 @@
 import React from 'react'
 import { Layout } from '@components'
+import { useSession } from 'next-auth/client'
 
 const Home: React.FC = (): JSX.Element => {
-  return <Layout title="Home">Home</Layout>
+  const [session, loading] = useSession()
+  return <Layout title="Home">{JSON.stringify(session)}</Layout>
 }
 
 export default Home
