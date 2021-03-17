@@ -18,5 +18,11 @@ export default NextAuth({
       session.user = user
       return session
     },
+    async redirect(url, baseUrl) {
+      return baseUrl + '/account'
+    },
+  },
+  pages: {
+    signIn: '/signin',
   },
 })
