@@ -1,3 +1,3 @@
 import request from './request'
-
-export { request }
+import { FeatureGamesQuery } from './queries'
+export { request, FeatureGamesQuery }
