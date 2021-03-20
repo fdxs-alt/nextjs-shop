@@ -26,9 +26,10 @@ const ClearCart: React.FC<Props> = ({ clearCart, disabled }): JSX.Element => {
   return (
     <>
       <Button
-        colorScheme="red"
+        colorScheme="facebook"
         onClick={() => setIsOpen(true)}
         disabled={!disabled}
+        size="md"
       >
         Clear cart
       </Button>
@@ -36,7 +37,7 @@ const ClearCart: React.FC<Props> = ({ clearCart, disabled }): JSX.Element => {
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
-        onClose={onClose}
+        onClose={() => setIsOpen(false)}
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
@@ -49,7 +50,7 @@ const ClearCart: React.FC<Props> = ({ clearCart, disabled }): JSX.Element => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button ref={cancelRef} onClick={() => setIsOpen(false)}>
                 Cancel
               </Button>
               <Button colorScheme="red" onClick={onClose} ml={3}>
