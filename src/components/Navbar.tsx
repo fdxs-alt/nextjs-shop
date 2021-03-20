@@ -1,10 +1,14 @@
-import { Button, Flex, Heading, Link, Spinner } from '@chakra-ui/react'
+import { Button, Flex, Heading, Link, Spinner, Text } from '@chakra-ui/react'
 import React from 'react'
 import Image from 'next/image'
 import NextLink from 'next/link'
+import NextImage from 'next/image'
 import { signOut, useSession } from 'next-auth/client'
+import { useCartState } from '@store'
+
 const Navbar = () => {
   const [session, loading] = useSession()
+  const { quantity } = useCartState()
   return (
     <Flex
       justifyContent="space-between"
@@ -27,6 +31,12 @@ const Navbar = () => {
         <NextLink href="/account">
           <Link p="0 10px" fontSize={20}>
             My account
+          </Link>
+        </NextLink>
+        <NextLink href="/cart">
+          <Link p="0 10px" fontSize={20} d="flex" alignItems="center">
+            <NextImage src="/cart.svg" alt="cart" width={30} height={30} />
+            <Text ml="15px">Items in cart: {quantity}</Text>
           </Link>
         </NextLink>
         {loading ? (

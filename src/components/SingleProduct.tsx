@@ -1,8 +1,15 @@
 import { WrapItem, Heading, Flex, Button, Spacer, Text } from '@chakra-ui/react'
 import { Image } from 'react-datocms'
 import React from 'react'
+import { IProduct } from 'types'
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = ({
+  product,
+  handleClick,
+}: {
+  product: IProduct
+  handleClick: (product: IProduct) => void
+}) => {
   return (
     <WrapItem
       key={product.id}
@@ -28,7 +35,11 @@ const SingleProduct = ({ product }) => {
         Platform: {product.platform}
       </Text>
       <Flex justifyContent="space-between" w="90%" mt="30px">
-        <Button colorScheme="red" w="fit-content">
+        <Button
+          colorScheme="red"
+          w="fit-content"
+          onClick={() => handleClick(product)}
+        >
           Add to cart
         </Button>
         <Spacer />

@@ -18,7 +18,9 @@
       "@graphql": ["graphql"],
       "@components": ["components"],
       "@shared": ["shared"],
-      "@api": ["api"]
+      "@api": ["api"],
+      "@store": ["store"],
+      "@utils": ["utils"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
