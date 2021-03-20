@@ -2,13 +2,14 @@ import { Box, Button, Flex, Heading } from '@chakra-ui/react'
 import { Layout, CartSingleProduct, NoGames, InfoPanel } from '@components'
 import { useCartActions, useCartState } from '@store'
 import { addToCart, removeFromCart } from '@utils'
+import { useRouter } from 'next/dist/client/router'
 import React from 'react'
 import { Product } from 'types'
 
 const CartPage: React.FC = (): JSX.Element => {
   const { cartValue, products, quantity } = useCartState()
   const dispatch = useCartActions()
-
+  const router = useRouter()
   return (
     <Layout title="Cart" isWithNavbar={true}>
       <Box w="100%" margin="100px auto" padding="30px">
@@ -41,6 +42,7 @@ const CartPage: React.FC = (): JSX.Element => {
               size="lg"
               mt="20px"
               colorScheme="red"
+              onClick={() => router.push('/checkout')}
             >
               Checkout
             </Button>

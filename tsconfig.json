@@ -20,7 +20,8 @@
       "@shared": ["shared"],
       "@api": ["api"],
       "@store": ["store"],
-      "@utils": ["utils"]
+      "@utils": ["utils"],
+      "@routes": ["routes"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

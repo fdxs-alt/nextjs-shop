@@ -4,6 +4,9 @@ import CartSingleProduct from './Cart/CartSingleProduct'
 import ClearCart from './Cart/ClearCart'
 import NoGames from './Cart/NoGames'
 import InfoPanel from './Cart/InfoPanel'
+import NotLoggedInfo from './Checkout/NotLoggedInfo'
+import FormikField from './Checkout/FormikField'
+import CheckoutForm from './Checkout/CheckoutForm'
 
 export {
   Layout,
@@ -12,4 +15,7 @@ export {
   ClearCart,
   NoGames,
   InfoPanel,
+  NotLoggedInfo,
+  FormikField,
+  CheckoutForm,
 }

@@ -1,12 +1,11 @@
-import { errorHandler, dbMiddleware } from '@api'
+import { errorHandler, dbMiddleware, asyncHandler, authMiddleware } from '@api'
 import morgan from 'morgan'
 import nc from 'next-connect'
+import { createSession } from 'routes'
 
 const handler = nc({ attachParams: true, onError: errorHandler })
   .use(morgan('dev'))
   .use(dbMiddleware)
-  .get('/api', (req, res) => {
-    res.json({ message: 'Working' })
-  })
+  .post('/api/create-intent', authMiddleware, asyncHandler(createSession))
 
 export default handler
