@@ -5,7 +5,6 @@ import { NextApiResponse } from 'next'
 import { getSession, Session } from 'next-auth/client'
 import { NextHandler } from 'next-connect'
 import StripeAPI from 'stripe'
-import daysjs from 'daysjs'
 import dayjs from 'dayjs'
 const stripe = new StripeAPI(process.env.STRIPE_SECRET as string, {
   apiVersion: '2020-08-27',
