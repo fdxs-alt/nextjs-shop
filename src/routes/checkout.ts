@@ -54,7 +54,8 @@ const createSuccessfulPayment = async (
       street,
       city,
       products,
-      userId: req.session.user.id,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      userId: (req.session.user as any).id,
       cartValue,
       date: dayjs().format('HH:mm DD/MM/YYYY'),
     })
@@ -78,7 +79,8 @@ const getAllUsersOrders = async (
     const userOrders = await orderCollection
       .find(
         {
-          userId: req.session.user.id,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          userId: (req.session.user as any).id,
         },
         { sort: { date: -1 } }
       )
