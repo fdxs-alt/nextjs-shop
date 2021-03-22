@@ -8,34 +8,32 @@ const AllOrders = () => {
   const { orders, isLoading, isError } = useOrders()
 
   return (
-    <>
-      <Stack
-        w="65%"
-        alignSelf="center"
-        spacing="30px"
-        bg="white"
-        padding="30px"
-        rounded="md"
-      >
-        {isLoading ? (
-          <>
-            {new Array(6).map((_, i) => (
-              <Skeleton height="50px" key={i} />
-            ))}
-          </>
-        ) : isError ? (
-          <Text>Error occured</Text>
-        ) : orders && orders.length ? (
-          <Accordion>
-            {orders.map((order) => (
-              <SingleOrder order={order} key={order._id} />
-            ))}
-          </Accordion>
-        ) : (
-          <NoOrder />
-        )}
-      </Stack>
-    </>
+    <Stack
+      w="65%"
+      alignSelf="center"
+      spacing="30px"
+      bg="white"
+      padding="30px"
+      rounded="md"
+    >
+      {isLoading ? (
+        <>
+          {[...new Array(6)].map((_, i) => {
+            return <Skeleton height="50px" key={i} />
+          })}
+        </>
+      ) : isError ? (
+        <Text>Error occured</Text>
+      ) : orders && orders.length ? (
+        <Accordion>
+          {orders.map((order) => (
+            <SingleOrder order={order} key={order._id} />
+          ))}
+        </Accordion>
+      ) : (
+        <NoOrder />
+      )}
+    </Stack>
   )
 }
 
