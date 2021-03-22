@@ -1,11 +1,11 @@
 import { useOrders } from '@utils'
 import React from 'react'
-import { Skeleton, Stack, Accordion } from '@chakra-ui/react'
+import { Skeleton, Stack, Accordion, Text } from '@chakra-ui/react'
 import SingleOrder from './SingleOrder'
 import NoOrder from './NoOrder'
 
 const AllOrders = () => {
-  const { orders, isLoading } = useOrders()
+  const { orders, isLoading, isError } = useOrders()
 
   return (
     <>
@@ -17,22 +17,19 @@ const AllOrders = () => {
         padding="30px"
         rounded="md"
       >
-        {isLoading && (
+        {isLoading ? (
           <>
-            <Skeleton height="50px" />
-            <Skeleton height="50px" />
-            <Skeleton height="50px" />
-            <Skeleton height="50px" />
-            <Skeleton height="50px" />
-            <Skeleton height="50px" />
+            {new Array(6).map((_, i) => (
+              <Skeleton height="50px" key={i} />
+            ))}
           </>
-        )}
-
-        {orders && orders.length ? (
-          <Accordion padding="10px" defaultIndex={[0]}>
-            {orders.map((order) => {
-              return <SingleOrder key={order._id} order={order} />
-            })}
+        ) : isError ? (
+          <Text>Error occured</Text>
+        ) : orders && orders.length ? (
+          <Accordion>
+            {orders.map((order) => (
+              <SingleOrder order={order} key={order._id} />
+            ))}
           </Accordion>
         ) : (
           <NoOrder />
