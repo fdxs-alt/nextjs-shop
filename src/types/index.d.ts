@@ -40,3 +40,17 @@ export type Product = {
   platform: string
   quantity: number
 }
+
+export interface Order {
+  name: string
+  surname: string
+  email: string
+  country: string
+  street: string
+  city: string
+  products: Product[]
+  cartValue: number
+  userId: string
+  _id: string
+  date: string
+}

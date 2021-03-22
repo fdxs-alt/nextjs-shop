@@ -1,5 +1,6 @@
 import { Product } from './../types/index.d'
 import { InitalProduct, IProduct } from 'types'
+import { useOrders } from './hooks'
 
 const prepareProduct = ({ id, price, name, image, platform }: IProduct) => {
   return {
@@ -44,4 +45,4 @@ const fetchBuyIntent = async (cartValue: number) => {
   return data
 }
 
-export { addToCart, removeFromCart, resetCart, fetchBuyIntent }
+export { addToCart, removeFromCart, resetCart, fetchBuyIntent, useOrders }

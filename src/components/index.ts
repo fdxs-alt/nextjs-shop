@@ -7,7 +7,7 @@ import InfoPanel from './Cart/InfoPanel'
 import NotLoggedInfo from './Checkout/NotLoggedInfo'
 import FormikField from './Checkout/FormikField'
 import CheckoutForm from './Checkout/CheckoutForm'
-
+import AllOrders from './Account/AllOrders'
 export {
   Layout,
   SingleProduct,
@@ -18,4 +18,5 @@ export {
   NotLoggedInfo,
   FormikField,
   CheckoutForm,
+  AllOrders,
 }

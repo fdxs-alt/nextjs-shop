@@ -10,6 +10,7 @@ const promise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string)
 
 const Checkout = () => {
   const [session, loading] = useSession()
+
   return (
     <Layout title="Checkout" isWithNavbar={true}>
       <Flex p="50px" flexDir="column">

@@ -15,6 +15,8 @@ const sessionMiddleware = async (
     throw new ErrorWithCode('User unauthorized', 401)
   }
 
+  req.session = session
+
   next()
 }
 

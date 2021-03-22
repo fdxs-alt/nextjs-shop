@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.1.5",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.1",
+    "dayjs": "^1.10.4",
     "formik": "^2.2.6",
     "framer-motion": "^3.10.5",
     "graphql": "^15.5.0",

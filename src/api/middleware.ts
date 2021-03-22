@@ -1,9 +1,11 @@
 import { Db, MongoClient } from 'mongodb'
 import { NextApiResponse, NextApiRequest } from 'next'
+import { Session } from 'next-auth/client'
 import { NextHandler } from 'next-connect'
 
 export interface IRequest extends NextApiRequest {
   db: Db
+  session: Session
 }
 
 let client: MongoClient | null = null

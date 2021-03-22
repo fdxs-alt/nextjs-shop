@@ -39,7 +39,7 @@ const cardStyle = {
 }
 
 const CheckoutForm = () => {
-  const { cartValue } = useCartState()
+  const { cartValue, products } = useCartState()
   const dispatch = useCartActions()
   const [isInPayment, setIsInPayment] = useState(false)
   const [succeeded, setSucceeded] = useState(false)
@@ -70,9 +70,15 @@ const CheckoutForm = () => {
         if (payload?.error) {
           setError(`Payment failed ${payload.error.message}`)
         } else {
+          await fetch('/api/create-order', {
+            method: 'POST',
+            body: JSON.stringify({ ...values, products, cartValue }),
+            credentials: 'include',
+          })
+
+          resetForm()
           setError('')
           setSucceeded(true)
-          resetForm()
           dispatch(resetCart())
           setTimeout(() => {
             router.push('/account')
