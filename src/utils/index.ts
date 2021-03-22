@@ -32,4 +32,16 @@ const resetCart = (): { type: 'RESET_CART' } => {
   return { type: 'RESET_CART' }
 }
 
-export { addToCart, removeFromCart, resetCart }
+const fetchBuyIntent = async (cartValue: number) => {
+  const data = await window.fetch('/api/create-intent', {
+    method: 'POST',
+    body: JSON.stringify({ total: cartValue }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+  return data
+}
+
+export { addToCart, removeFromCart, resetCart, fetchBuyIntent }

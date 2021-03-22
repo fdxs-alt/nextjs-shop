@@ -7,7 +7,9 @@ import {
   StripeCardElement,
   StripeCardElementChangeEvent,
 } from '@stripe/stripe-js'
-import { useCartState } from '@store'
+import { useCartActions, useCartState } from '@store'
+import { useRouter } from 'next/dist/client/router'
+import { fetchBuyIntent, resetCart } from '@utils'
 
 const initalValues = {
   name: '',
@@ -38,6 +40,7 @@ const cardStyle = {
 
 const CheckoutForm = () => {
   const { cartValue } = useCartState()
+  const dispatch = useCartActions()
   const [isInPayment, setIsInPayment] = useState(false)
   const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState('')
@@ -46,20 +49,20 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState('')
   const stripe = useStripe()
   const elements = useElements()
+  const router = useRouter()
 
   const handleChange = async (event: StripeCardElementChangeEvent) => {
     setDisabled(event.empty)
     setError(event.error ? event.error.message : '')
   }
 
-  console.log(error)
-
   return (
     <Formik
       initialValues={initalValues}
-      onSubmit={async (values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
         setSubmitting(true)
         const payload = await stripe?.confirmCardPayment(clientSecret, {
+          receipt_email: values.email,
           payment_method: {
             card: elements?.getElement(CardElement) as StripeCardElement,
           },
@@ -69,12 +72,17 @@ const CheckoutForm = () => {
         } else {
           setError('')
           setSucceeded(true)
+          resetForm()
+          dispatch(resetCart())
+          setTimeout(() => {
+            router.push('/account')
+          }, 3000)
         }
 
         setSubmitting(false)
       }}
     >
-      {({ isSubmitting }) => {
+      {({ isSubmitting, values }) => {
         return (
           <Box as={Form} w="30%" minW="450px">
             <FormikField
@@ -150,8 +158,9 @@ const CheckoutForm = () => {
                   color="facebook.900"
                   textAlign="center"
                   fontWeight={600}
+                  marginTop="20px"
                 >
-                  Payment was succesfull
+                  Payment was succesfull, redirecting to your account.
                 </Text>
               )
             ) : (
@@ -164,25 +173,37 @@ const CheckoutForm = () => {
                 type="button"
                 disabled={processing}
                 onClick={async () => {
+                  setError('')
+                  if (Object.values(values).some((el) => el === '')) {
+                    setError('You need to fill all given fields.')
+                    return
+                  }
+
                   if (typeof window !== 'undefined') {
                     setProcessing(true)
-                    const data = await window.fetch('/api/create-intent', {
-                      method: 'POST',
-                      body: JSON.stringify({ total: cartValue }),
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                    })
+                    const data = await fetchBuyIntent(cartValue)
 
-                    const { clientSecret } = await data.json()
-                    setClientSecret(clientSecret)
+                    if (data.ok) {
+                      const { clientSecret } = await data.json()
+                      setClientSecret(clientSecret)
+
+                      setIsInPayment(true)
+                    } else {
+                      setError(
+                        'Error occured during proccessing. Please try again later.'
+                      )
+                    }
                     setProcessing(false)
-                    setIsInPayment(true)
                   }
                 }}
               >
                 Process to next step
               </Button>
+            )}
+            {error && (
+              <Text fontSize="20px" color="red.500" textAlign="center">
+                {error}
+              </Text>
             )}
           </Box>
         )

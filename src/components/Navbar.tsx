@@ -47,9 +47,9 @@ const Navbar = () => {
           </Button>
         ) : (
           <NextLink href="/signin">
-            <Link p="0 10px" fontSize={20}>
+            <Button colorScheme="red" m="0 10px">
               Sign in
-            </Link>
+            </Button>
           </NextLink>
         )}
       </Flex>

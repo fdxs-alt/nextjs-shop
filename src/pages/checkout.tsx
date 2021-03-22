@@ -24,7 +24,7 @@ const Checkout = () => {
             </Elements>
           </Center>
         ) : (
-          <NotLoggedInfo />
+          <NotLoggedInfo message="You must be logged in to finish transaction!" />
         )}
       </Flex>
     </Layout>
