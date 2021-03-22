@@ -4,7 +4,14 @@ import { Provider } from 'next-auth/client'
 import { CartCtx } from '@store'
 import { SWRConfig } from 'swr'
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function fetcher<JSON = any>(
+  input: RequestInfo,
+  init?: RequestInit
+): Promise<JSON> {
+  const res = await fetch(input, init)
+  return res.json()
+}
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
