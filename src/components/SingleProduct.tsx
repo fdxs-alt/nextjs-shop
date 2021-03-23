@@ -25,7 +25,7 @@ const SingleProduct = ({
       padding="10px"
     >
       <Image data={product.image.responsiveImage} />
-      <Heading as="h5" fontSize={22} mt="20px">
+      <Heading as="h5" fontSize={22} mt="20px" textAlign="center">
         {product.name}
       </Heading>
       <Text fontSize="18px" mt="2" fontWeight={600}>
