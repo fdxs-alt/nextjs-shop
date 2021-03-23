@@ -1,22 +1,24 @@
 import React from 'react'
 import { Layout, SingleProduct } from '@components'
 import { useQuerySubscription } from 'react-datocms'
-import { FeatureGamesQuery } from '@graphql'
-import { Wrap, Center, Spinner, Box, Heading } from '@chakra-ui/react'
+import { FeatureGamesQuery } from 'graphqlAPI'
+import { Wrap, Center, Spinner, Heading, Button, Flex } from '@chakra-ui/react'
 import { IProduct } from 'types'
 import { useCartActions } from '@store'
 import { addToCart } from '@utils'
+import Link from 'next/link'
 const Home: React.FC = (): JSX.Element => {
   const { data } = useQuerySubscription<{ allGames: IProduct[] }>({
     query: FeatureGamesQuery,
     variables: { featured: true },
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   })
+
   const dispatch = useCartActions()
 
   return (
     <Layout title="Home" isWithNavbar={true}>
-      <Box padding="50px">
+      <Flex padding="50px" flexDir="column">
         <Heading as="h2" textAlign="center">
           Featured right now!
         </Heading>
@@ -44,7 +46,12 @@ const Home: React.FC = (): JSX.Element => {
             <Spinner />
           </Center>
         )}
-      </Box>
+        <Link href="/all">
+          <Button colorScheme="red" margin="auto" size="lg">
+            Check more!
+          </Button>
+        </Link>
+      </Flex>
     </Layout>
   )
 }

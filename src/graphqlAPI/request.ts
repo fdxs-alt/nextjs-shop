@@ -10,11 +10,14 @@ const request = <T>({
   variables,
 }: {
   query: string
-  variables: Variables
+  variables?: Variables
 }): Promise<T> => {
   const client = new GraphQLClient(endpoint, {
     headers: {
-      authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
+      authorization: `Bearer ${
+        process.env.NEXT_DATOCMS_API_TOKEN ||
+        process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN
+      }`,
     },
   })
 

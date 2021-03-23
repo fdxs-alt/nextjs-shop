@@ -8,6 +8,7 @@ import NotLoggedInfo from './Checkout/NotLoggedInfo'
 import FormikField from './Checkout/FormikField'
 import CheckoutForm from './Checkout/CheckoutForm'
 import AllOrders from './Account/AllOrders'
+import GenreCheckbox from './All/GenreCheckbox'
 export {
   Layout,
   SingleProduct,
@@ -19,4 +20,5 @@ export {
   FormikField,
   CheckoutForm,
   AllOrders,
+  GenreCheckbox,
 }
