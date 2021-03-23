@@ -42,7 +42,6 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
       variables: { genre, platform, name, skip },
     })
     setGames(data)
-    console.log(data)
     setLoading(false)
   }, [genre, name, skip, platform])
 
@@ -141,7 +140,7 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
           <Spinner />
         </Center>
       )}
-      {games.allGames.length === 20 && !loading && (
+      {games && games.allGames.length === 20 && !loading && (
         <Button colorScheme="red" onClick={() => setSkip((prev) => prev + 1)}>
           Load more...
         </Button>
