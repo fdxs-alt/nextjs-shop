@@ -15,7 +15,7 @@ const Home: React.FC = (): JSX.Element => {
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   })
 
-  const dispatch = useCartActions()
+  const { dispatch, createAddToCartToast } = useCartActions()
 
   return (
     <Layout title="Home" isWithNavbar={true}>
@@ -36,9 +36,10 @@ const Home: React.FC = (): JSX.Element => {
               <SingleProduct
                 product={el}
                 key={el.id}
-                handleClick={(product: IProduct) =>
+                handleClick={(product: IProduct) => {
                   dispatch(addToCart(product))
-                }
+                  createAddToCartToast()
+                }}
               />
             ))}
           </Wrap>

@@ -34,7 +34,7 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
   const [skip, setSkip] = useState(0)
   const [games, setGames] = useState<{ allGames: IProduct[] } | null>(null)
   const [loading, setLoading] = useState(true)
-  const dispatch = useCartActions()
+  const { dispatch, createAddToCartToast } = useCartActions()
 
   const fetchGames = useCallback(async () => {
     const data = await request<{ allGames: IProduct[] }>({
@@ -126,9 +126,10 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
               <SingleProduct
                 product={el}
                 key={el.id}
-                handleClick={(product: IProduct) =>
+                handleClick={(product: IProduct) => {
                   dispatch(addToCart(product))
-                }
+                  createAddToCartToast()
+                }}
               />
             ))
           ) : (

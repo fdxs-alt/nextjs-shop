@@ -19,7 +19,7 @@ import { useCartActions } from '@store'
 const SingleGame = () => {
   const { query } = useRouter()
   const { id } = query
-  const dispatch = useCartActions()
+  const { dispatch, createAddToCartToast } = useCartActions()
   const { data, error } = useQuerySubscription<{ game: IProduct }>({
     query: SINGLE_GAME,
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN,
@@ -52,7 +52,10 @@ const SingleGame = () => {
               <InfoList item={data.game} />
             </List>
             <Button
-              onClick={() => dispatch(addToCart(data.game))}
+              onClick={() => {
+                dispatch(addToCart(data.game))
+                createAddToCartToast()
+              }}
               colorScheme="red"
               marginTop="20px"
             >

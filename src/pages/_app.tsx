@@ -16,13 +16,13 @@ async function fetcher<JSON = any>(
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <SWRConfig value={{ fetcher }}>
-      <Provider session={pageProps.session}>
-        <CartCtx>
-          <ChakraProvider>
+      <ChakraProvider>
+        <Provider session={pageProps.session}>
+          <CartCtx>
             <Component {...pageProps} />
-          </ChakraProvider>
-        </CartCtx>
-      </Provider>
+          </CartCtx>
+        </Provider>
+      </ChakraProvider>
     </SWRConfig>
   )
 }

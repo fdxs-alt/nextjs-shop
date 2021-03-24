@@ -10,7 +10,7 @@ interface Props {
 }
 
 const InfoPanel: React.FC<Props> = ({ quantity, cartValue }): JSX.Element => {
-  const dispatch = useCartActions()
+  const { dispatch } = useCartActions()
   return (
     <Flex
       w="100%"

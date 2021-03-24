@@ -40,7 +40,7 @@ const cardStyle = {
 
 const CheckoutForm = () => {
   const { cartValue, products } = useCartState()
-  const dispatch = useCartActions()
+  const { dispatch } = useCartActions()
   const [isInPayment, setIsInPayment] = useState(false)
   const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState('')

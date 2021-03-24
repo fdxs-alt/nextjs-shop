@@ -8,7 +8,7 @@ import { Product } from 'types'
 
 const CartPage: React.FC = (): JSX.Element => {
   const { cartValue, products, quantity } = useCartState()
-  const dispatch = useCartActions()
+  const { dispatch } = useCartActions()
   const router = useRouter()
   return (
     <Layout title="Cart" isWithNavbar={true}>
@@ -34,9 +34,9 @@ const CartPage: React.FC = (): JSX.Element => {
                   handleRemoveFromCart={(product: Product) =>
                     dispatch(removeFromCart(product))
                   }
-                  handleAddToCart={(product: Product) =>
+                  handleAddToCart={(product: Product) => {
                     dispatch(addToCart(product))
-                  }
+                  }}
                 />
               ))}
             </Flex>

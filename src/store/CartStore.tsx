@@ -1,4 +1,5 @@
 /* eslint-disable no-case-declarations */
+import { useToast } from '@chakra-ui/react'
 import {
   createContext,
   Dispatch,
@@ -16,7 +17,10 @@ type TCartStateCtx = {
 }
 
 const CartStateCtx = createContext<TCartStateCtx>({} as TCartStateCtx)
-const CartActionCtx = createContext<Dispatch<Actions>>(() => null)
+const CartActionCtx = createContext<{
+  dispatch: Dispatch<Actions>
+  createAddToCartToast: () => void
+}>({ dispatch: () => null, createAddToCartToast: () => null })
 
 type Actions =
   | { type: 'ADD_TO_CART'; payload: InitalProduct }
@@ -64,6 +68,7 @@ const reducer = (state: Product[], action: Actions) => {
 
 const CartProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, [] as Product[])
+  const toast = useToast()
 
   useEffect(() => {
     const productsFromLs = window.localStorage.getItem('products')
@@ -90,8 +95,18 @@ const CartProvider: React.FC = ({ children }) => {
     )
   }, [state])
 
+  const createAddToCartToast = () => {
+    toast({
+      title: 'Success',
+      description: 'Game was added to the cart',
+      status: 'success',
+      duration: 2500,
+      isClosable: true,
+    })
+  }
+
   return (
-    <CartActionCtx.Provider value={dispatch}>
+    <CartActionCtx.Provider value={{ dispatch, createAddToCartToast }}>
       <CartStateCtx.Provider value={{ products: state, cartValue, quantity }}>
         {children}
       </CartStateCtx.Provider>
