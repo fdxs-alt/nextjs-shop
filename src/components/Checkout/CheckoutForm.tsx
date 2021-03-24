@@ -207,7 +207,12 @@ const CheckoutForm = () => {
               </Button>
             )}
             {error && (
-              <Text fontSize="20px" color="red.500" textAlign="center">
+              <Text
+                fontSize="20px"
+                color="red.500"
+                textAlign="center"
+                marginTop="30px"
+              >
                 {error}
               </Text>
             )}

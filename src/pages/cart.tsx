@@ -12,13 +12,18 @@ const CartPage: React.FC = (): JSX.Element => {
   const router = useRouter()
   return (
     <Layout title="Cart" isWithNavbar={true}>
-      <Box w="100%" margin="100px auto" padding="30px">
+      <Box w="100%" margin="30px auto" padding="30px">
         <Heading as="h1" textAlign="center" color="red.900" mb="30px">
           Your cart
         </Heading>
         {products.length !== 0 ? (
-          <Flex flexDirection="column">
-            <Flex w="60%" flexDirection="column" margin="10px auto">
+          <Flex flexDirection="column" margin="auto">
+            <Flex
+              w="100%"
+              flexDirection="column"
+              margin="10px auto"
+              maxWidth="1200px"
+            >
               <Heading as="h4" fontSize="20">
                 All games in your cart:
               </Heading>

@@ -9,7 +9,8 @@ const AllOrders = () => {
 
   return (
     <Stack
-      w="65%"
+      w="100%"
+      maxWidth="1200px"
       alignSelf="center"
       spacing="30px"
       bg="white"

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <Box w="100%" p="50px" background="red.600">
+    <Box w="100%" p="50px" background="red.600" marginTop="50px">
       <Heading fontSize={22} color="white" fontWeight="500" textAlign="center">
         Created in 2021 by Jakub Sukiennik ®
       </Heading>

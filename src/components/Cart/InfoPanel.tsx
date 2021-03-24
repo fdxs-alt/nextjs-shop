@@ -13,10 +13,11 @@ const InfoPanel: React.FC<Props> = ({ quantity, cartValue }): JSX.Element => {
   const dispatch = useCartActions()
   return (
     <Flex
-      w="50%"
+      w="100%"
       margin="20px auto"
       justify="space-between"
       alignItems="center"
+      maxWidth="1200px"
     >
       <Text fontSize="20px" fontWeight={600}>
         Quantity: {quantity}

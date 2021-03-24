@@ -1,7 +1,6 @@
-import { Flex, Heading, IconButton, Text } from '@chakra-ui/react'
+import { Flex, Heading, IconButton, Text, Image } from '@chakra-ui/react'
 import React from 'react'
 import { Product } from 'types'
-import { Image } from 'react-datocms'
 import { AddIcon, MinusIcon } from '@chakra-ui/icons'
 interface Props {
   product: Product
@@ -24,15 +23,20 @@ const CartSingleProduct: React.FC<Props> = ({
       borderStyle="solid"
       borderRadius="8px"
       marginTop="15px"
+      flexWrap="wrap"
     >
-      <Image data={product.image.responsiveImage} />
-      <Heading as="h5" fontSize="20px">
+      <Image
+        src={product.image.responsiveImage.src}
+        width="125px"
+        height="200px"
+      />
+      <Heading as="h5" fontSize="20px" w="150px">
         {product.name}
       </Heading>
-      <Heading as="h5" fontSize="20px">
+      <Heading as="h5" fontSize="20px" w="150px">
         Platform: {product.platform}
       </Heading>
-      <Flex as="h5" fontSize="20px" flexDirection="column">
+      <Flex as="h5" fontSize="20px" flexDirection="column" w="220px">
         <Text fontSize="20px">
           Single game price: <b>{product.price} $ </b>
         </Text>
@@ -40,7 +44,7 @@ const CartSingleProduct: React.FC<Props> = ({
           Total: <b>{product.price * product.quantity} $ </b>
         </Text>
       </Flex>
-      <Flex w="20%" justify="space-between" alignItems="center">
+      <Flex w="120px" justify="space-between" alignItems="center">
         <IconButton
           aria-label="Add"
           icon={<MinusIcon />}

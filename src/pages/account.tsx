@@ -7,7 +7,7 @@ import React from 'react'
 const Account = ({ session }: { session: Session }) => {
   return (
     <Layout isWithNavbar={true} title="My account">
-      <Flex p="50px" flexDir="column">
+      <Flex flexDir="column">
         {session ? (
           <AllOrders />
         ) : (

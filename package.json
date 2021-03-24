@@ -27,7 +27,6 @@
     "next-auth": "^3.13.0",
     "next-connect": "^0.10.1",
     "next-seo": "^4.20.0",
-    "nookies": "^2.5.2",
     "react": "17.0.1",
     "react-datocms": "^1.5.5",
     "react-dom": "17.0.1",

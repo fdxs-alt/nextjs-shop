@@ -1,6 +1,13 @@
 #### NEXT.js shop
 
-Work in progress
+Used tech:
+
+1. Next.js
+2. DatoCMS
+3. MongoDB
+4. Next-auth and next-connect
+5. Chakra UI
+6. @stripe/react-stripe-js and @stripe/stripe-js
 
 Features:
 
@@ -11,4 +18,4 @@ Features:
 5. Payments done with Stripe - DONE
 6. Products filtering - DONE
 7. Displaying single product - DONE
-8. Site properly displays in mobile view - TODO
+8. Site properly displays in mobile view - DONE

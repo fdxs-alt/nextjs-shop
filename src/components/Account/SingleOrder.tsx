@@ -30,7 +30,7 @@ const SingleOrder: React.FC<Props> = ({ order }) => {
         </AccordionButton>
       </h2>
       <AccordionPanel d="flex">
-        <Wrap spacing="30px">
+        <Wrap spacing="10px">
           <WrapItem>
             <Box p="5px 10px">
               <Heading as="h3" fontSize="20px" color="red.900" mb="10px">
@@ -46,7 +46,7 @@ const SingleOrder: React.FC<Props> = ({ order }) => {
           {products.map((prod: Product) => (
             <WrapItem key={prod.id} alignItems="center" justifyContent="center">
               <Image data={prod.image.responsiveImage} />
-              <Box p="5px 15px" maxWidth="250px">
+              <Box p="5px 15px" width="220px">
                 <Text fontWeight="600">Name: {prod.name}</Text>
                 <Text fontWeight="600">Platform: {prod.platform}</Text>
                 <Text fontWeight="600">Price: {prod.price}$</Text>

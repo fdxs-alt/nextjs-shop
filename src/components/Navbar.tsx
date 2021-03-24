@@ -9,23 +9,36 @@ import { useCartState } from '@store'
 const Navbar = () => {
   const [session, loading] = useSession()
   const { quantity } = useCartState()
+
   return (
     <Flex
-      justifyContent="space-between"
+      justifyContent="center"
       alignItems="center"
       h="fit-content"
       p="20px"
-      w="80%"
-      margin="0 auto"
+      w="100%"
+      maxWidth="1200px"
+      margin="0 auto 50px auto"
+      flexWrap="wrap"
     >
       <Flex alignItems="center" color="red.600">
         <Image src="/computer.svg" width={125} height={90} />
         <Heading as="h3">Next-shop</Heading>
       </Flex>
-      <Flex alignItems="center">
+      <Flex
+        alignItems="center"
+        flexWrap="wrap"
+        justifyContent="center"
+        padding="10px"
+      >
         <NextLink href="/">
           <Link p="0 10px" fontSize={20}>
             Home
+          </Link>
+        </NextLink>
+        <NextLink href="/all">
+          <Link p="0 10px" fontSize={20}>
+            All Games
           </Link>
         </NextLink>
         <NextLink href="/account">
