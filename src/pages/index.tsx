@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout, SingleProduct } from '@components'
 import { useQuerySubscription } from 'react-datocms'
-import { FeatureGamesQuery } from 'graphqlAPI'
+import { FEATURED_GAMES } from 'graphqlAPI'
 import { Wrap, Center, Spinner, Heading, Button, Flex } from '@chakra-ui/react'
 import { IProduct } from 'types'
 import { useCartActions } from '@store'
@@ -9,7 +9,7 @@ import { addToCart } from '@utils'
 import Link from 'next/link'
 const Home: React.FC = (): JSX.Element => {
   const { data } = useQuerySubscription<{ allGames: IProduct[] }>({
-    query: FeatureGamesQuery,
+    query: FEATURED_GAMES,
     variables: { featured: true },
     token: process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN as string,
   })

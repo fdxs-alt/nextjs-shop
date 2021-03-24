@@ -9,5 +9,6 @@ Features:
 3. Cart saved in context - DONE
 4. Products saved in DatoCMS - DONE
 5. Payments done with Stripe - DONE
-6. Products filtering - TODO
-7. Site properly displays in mobile view - TODO
+6. Products filtering - DONE
+7. Displaying single product - DONE
+8. Site properly displays in mobile view - TODO

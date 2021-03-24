@@ -2,6 +2,7 @@ import { WrapItem, Heading, Flex, Button, Spacer, Text } from '@chakra-ui/react'
 import { Image } from 'react-datocms'
 import React from 'react'
 import { IProduct } from 'types'
+import Link from 'next/link'
 
 const SingleProduct = ({
   product,
@@ -43,9 +44,11 @@ const SingleProduct = ({
           Add to cart
         </Button>
         <Spacer />
-        <Button colorScheme="gray" w="fit-content">
-          See more!
-        </Button>
+        <Link href={`/game/${product.id}`}>
+          <Button colorScheme="gray" w="fit-content">
+            See more!
+          </Button>
+        </Link>
       </Flex>
     </WrapItem>
   )

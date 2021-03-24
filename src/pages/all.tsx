@@ -17,7 +17,7 @@ import {
 import { Layout, SingleProduct } from '@components'
 import { useCartActions } from '@store'
 import { addToCart } from '@utils'
-import { AllCategories, AllGames, request } from 'graphqlAPI'
+import { ALL_CATEGORIES, ALL_GAMES, request } from 'graphqlAPI'
 import { GetStaticProps } from 'next'
 import React, { useCallback, useEffect, useState } from 'react'
 import { IProduct } from 'types'
@@ -38,7 +38,7 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
 
   const fetchGames = useCallback(async () => {
     const data = await request<{ allGames: IProduct[] }>({
-      query: AllGames,
+      query: ALL_GAMES,
       variables: { genre, platform, name, skip },
     })
     setGames(data)
@@ -47,7 +47,7 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
 
   useEffect(() => {
     setLoading(true)
-    const id = setTimeout(() => fetchGames(), 500)
+    const id = setTimeout(() => fetchGames(), 400)
 
     return () => {
       clearTimeout(id)
@@ -92,7 +92,7 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
         </FormControl>
         <Box w="400px">
           <Text fontSize="18px" fontWeight={600}>
-            Select game genre:
+            Select game genres:
           </Text>
           <Wrap spacing="20px">
             {categories.map((el, i) => (
@@ -155,7 +155,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const { allGames } = await request<{
     allGames: { category: string; platform: string }[]
   }>({
-    query: AllCategories,
+    query: ALL_CATEGORIES,
   })
 
   const categories = Array.from(

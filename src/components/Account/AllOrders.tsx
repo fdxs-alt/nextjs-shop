@@ -1,6 +1,6 @@
 import { useOrders } from '@utils'
 import React from 'react'
-import { Skeleton, Stack, Accordion, Text } from '@chakra-ui/react'
+import { Stack, Accordion, Text, Center, Spinner } from '@chakra-ui/react'
 import SingleOrder from './SingleOrder'
 import NoOrder from './NoOrder'
 
@@ -17,11 +17,9 @@ const AllOrders = () => {
       rounded="md"
     >
       {isLoading ? (
-        <>
-          {[...new Array(6)].map((_, i) => {
-            return <Skeleton height="50px" key={i} />
-          })}
-        </>
+        <Center height="500px">
+          <Spinner />
+        </Center>
       ) : isError ? (
         <Text>Error occured</Text>
       ) : orders && orders.length ? (
