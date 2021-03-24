@@ -7,6 +7,7 @@ import { IProduct } from 'types'
 import { useCartActions } from '@store'
 import { addToCart } from '@utils'
 import Link from 'next/link'
+
 const Home: React.FC = (): JSX.Element => {
   const { data } = useQuerySubscription<{ allGames: IProduct[] }>({
     query: FEATURED_GAMES,

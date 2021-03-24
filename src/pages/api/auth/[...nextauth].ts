@@ -19,7 +19,7 @@ export default NextAuth({
       return session
     },
     async redirect(url, baseUrl) {
-      return baseUrl + '/account'
+      return baseUrl
     },
   },
   pages: {
