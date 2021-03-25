@@ -39,11 +39,15 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
   const fetchGames = useCallback(async () => {
     const data = await request<{ allGames: IProduct[] }>({
       query: ALL_GAMES,
-      variables: { genre, platform, name, skip },
+      variables: { genre, platform, name, skip: skip * 20 },
     })
     setGames(data)
     setLoading(false)
   }, [genre, name, skip, platform])
+
+  useEffect(() => {
+    setSkip(0)
+  }, [genre, name, platform])
 
   useEffect(() => {
     setLoading(true)
@@ -133,7 +137,7 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
               />
             ))
           ) : (
-            <Heading fontSize="26px">There are no such games!</Heading>
+            <Heading fontSize="26px">No games</Heading>
           )}
         </Wrap>
       ) : (
@@ -142,8 +146,13 @@ const All: React.FC<Props> = ({ categories, platforms }): JSX.Element => {
         </Center>
       )}
       {games && games.allGames.length === 20 && !loading && (
-        <Button colorScheme="red" onClick={() => setSkip((prev) => prev + 1)}>
-          Load more...
+        <Button
+          colorScheme="red"
+          onClick={() => setSkip((prev) => prev + 1)}
+          w="fit-content"
+          margin="auto"
+        >
+          Next page
         </Button>
       )}
     </Layout>
